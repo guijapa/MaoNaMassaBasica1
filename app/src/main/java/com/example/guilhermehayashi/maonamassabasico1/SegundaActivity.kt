@@ -4,18 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 
 import kotlinx.android.synthetic.main.activity_segunda.*
 
 class SegundaActivity : AppCompatActivity() {
 
     var nome: String = ""
+    var pessoas: MutableList<Pessoa> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_segunda)
-        nome = intent.getStringExtra(MainActivity.companion.nameKey)
-        editNome.setHint("${nome}, qual seu verdadeiro nome?")
+        pessoas = intent.getParcelableArrayListExtra<Pessoa>(MainActivity.companion.nameKey) as MutableList<Pessoa>
         botaoOk.setOnClickListener({
             /*
             *
@@ -23,10 +25,12 @@ class SegundaActivity : AppCompatActivity() {
             *
             * */
             var intent = Intent()
-            intent.putExtra(MainActivity.companion.nameKey, editNome.text.toString())
             setResult(Activity.RESULT_OK, intent)
             finish()
         })
+        listaPessoas.layoutManager = LinearLayoutManager(this)
+        listaPessoas.adapter = PessoasAdapter(pessoas, this)
+        listaPessoas.adapter.notifyDataSetChanged()
     }
 
 }

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             *
             * */
             var intent = Intent(this, SegundaActivity::class.java)
-            intent.putExtra(MainActivity.companion.nameKey, nome)
+            intent.putParcelableArrayListExtra(MainActivity.companion.nameKey, nomes as ArrayList<Pessoa>)
             startActivityForResult(intent, 100)
         })
 
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100) {
             data?.let {
-                nome = it.getStringExtra(MainActivity.companion.nameKey)
+                nomes = it.getParcelableArrayListExtra(MainActivity.companion.nameKey)
                 textoClicou.text = "${nome} a comida:" + comidas
             }
         }
