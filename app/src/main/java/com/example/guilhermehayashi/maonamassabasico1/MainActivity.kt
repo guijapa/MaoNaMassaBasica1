@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     * */
 
     var comidas: String = ""
+    var contador: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +64,22 @@ class MainActivity : AppCompatActivity() {
     *
     * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
     *
+    * Condicional de comparação
+    *
+    * if (expressão) {
+    *   // código
+    * } else {
+    *   // código
+    * }
     *
     * */
 
     fun comeuAlgo(comida: String) {
+        contador = contador + 1
         comidas = comidas + comida + ","
+        if (contador > 3) {
+            comidas = "" + comida
+        }
         textoClicou.text = "Comeu a comida:" + comidas
     }
 
