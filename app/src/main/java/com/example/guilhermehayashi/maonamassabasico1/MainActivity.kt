@@ -10,9 +10,21 @@ class MainActivity : AppCompatActivity() {
 
     /*
     *
-    * LifeCycle da Activity: onPause, onResume, onCreate
+    * Variáveis: são valores que estão guardados para uso posteriores. Por ex.
+    *
+    * A variável a terá o valor 2 enquanto não for alterada. E x terá o valor 12.
+    * a = 2
+    * x = a + 10
+    * x = 12
+    *
+    * Formato:
+    *
+    * var nomeDaVariavel: Tipo = valor
+    *
     *
     * */
+
+    var comidas: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +67,8 @@ class MainActivity : AppCompatActivity() {
     * */
 
     fun comeuAlgo(comida: String) {
-        textoClicou.text = "Comeu a comida:" + comida
+        comidas = comidas + comida + ","
+        textoClicou.text = "Comeu a comida:" + comidas
     }
 
 }
