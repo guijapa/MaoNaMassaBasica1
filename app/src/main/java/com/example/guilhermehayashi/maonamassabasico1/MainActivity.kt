@@ -48,22 +48,29 @@ class MainActivity : AppCompatActivity() {
             * */
             var intent = Intent(this, SegundaActivity::class.java)
             intent.putExtra(MainActivity.companion.nameKey, nome)
-            startActivity(intent)
+            startActivityForResult(intent, 100)
         })
 
     }
 
-    /*
-    *
-    * */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100) {
+            data?.let {
+                nome = it.getStringExtra(MainActivity.companion.nameKey)
+                textoClicou.text = "${nome} a comida:" + comidas
+            }
+        }
+    }
 
     fun comeuAlgo(comida: String) {
         contador = contador + 1
         comidas = comidas + comida + ","
         if (contador > 3) {
             comidas = "" + comida
+            contador = 0
         }
-        textoClicou.text = "Comeu a comida:" + comidas
+        textoClicou.text = "${nome} a comida:" + comidas
     }
 
 }
