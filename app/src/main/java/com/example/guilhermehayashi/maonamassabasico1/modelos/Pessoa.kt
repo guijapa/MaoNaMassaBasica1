@@ -3,19 +3,7 @@ package com.example.guilhermehayashi.maonamassabasico1.modelos
 import android.os.Parcel
 import android.os.Parcelable
 
-/*
-*
-* class NomeDaClasse {
-*   var atributos: Tipo = valor
-* }
-*
-* Definimos a classe Pessoa que vai ter um atributo nome.
-*
-* Sobrescrevemos o método toString() que representa o objeto quando ele é printado.
-*
-* */
-
-class Pessoa(var nome: String): Parcelable {
+class Pessoa(var nome: String, var comidas: MutableList<Comida> = mutableListOf()): Parcelable {
 
     companion object CREATOR: Parcelable.Creator<Pessoa> {
         override fun createFromParcel(source: Parcel?): Pessoa {
@@ -38,6 +26,10 @@ class Pessoa(var nome: String): Parcelable {
     }
 
     override fun toString(): String {
-        return nome
+        return "Meu nome é: ${nome} e eu comi: ${comidas.count()} comidas. \n"
+    }
+
+    fun comerComida(comida: Comida) {
+        this.comidas.add(comida)
     }
 }

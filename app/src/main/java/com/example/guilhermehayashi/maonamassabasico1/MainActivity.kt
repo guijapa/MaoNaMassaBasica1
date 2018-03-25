@@ -57,11 +57,6 @@ class MainActivity : AppCompatActivity() {
             comeuAlgo(comida=comida3)
         })
         botaoMudarNome.setOnClickListener({
-            /*
-            *
-            * É dessa forma que iniciamos uma nova Activity.
-            *
-            * */
             var intent = Intent(this, SegundaActivity::class.java)
             intent.putParcelableArrayListExtra(MainActivity.companion.nameKey, nomes as ArrayList<Pessoa>)
             startActivityForResult(intent, 100)
@@ -87,21 +82,22 @@ class MainActivity : AppCompatActivity() {
     * */
 
     fun comeuAlgo(comida: Comida) {
-        var textoUsuario1: String = ""
-        var textoUsuario2: String = ""
-        var textoUsuario3: String = ""
         if (comida == comida1) {
-            textoUsuario1 = "${nomes[0]} comeu"
-            textoUsuario2 = "${nomes[1]} comeu"
+            nomes[0].comerComida(comida)
+            nomes[1].comerComida(comida)
         }
         if (comida == comida2) {
-            textoUsuario1 = "${nomes[0]} comeu"
+            nomes[0].comerComida(comida)
         }
         if (comida == comida3) {
-            textoUsuario1 = "${nomes[1]} comeu"
-            textoUsuario2 = "${nomes[2]} comeu"
+            nomes[1].comerComida(comida)
+            nomes[2].comerComida(comida)
         }
-        textoClicou.text = "${textoUsuario1}\n ${textoUsuario2}\n ${textoUsuario3}"
+        var texto = ""
+        for (pessoa in nomes) {
+            texto = texto + pessoa.toString()
+        }
+        textoClicou.text = texto
     }
 
 }
