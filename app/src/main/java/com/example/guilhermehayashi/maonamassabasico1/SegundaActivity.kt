@@ -3,11 +3,13 @@ package com.example.guilhermehayashi.maonamassabasico1
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 
 import kotlinx.android.synthetic.main.activity_segunda.*
+import java.util.ArrayList
 
 class SegundaActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class SegundaActivity : AppCompatActivity() {
             *
             * */
             var intent = Intent()
+            intent.putParcelableArrayListExtra(MainActivity.companion.nameKey, pessoas as ArrayList<Pessoa>)
             setResult(Activity.RESULT_OK, intent)
             finish()
         })
