@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,15 +22,17 @@ class MainActivity : AppCompatActivity() {
     *
     * */
 
-    var comidas: String = ""
-    var contador: Int = 0
-    var nome: String = "Guilherme"
+    var comida1: Comida = Comida(nome="Maçã")
+    var comida2: Comida = Comida(nome="Banana")
+    var comida3: Comida = Comida(nome="Pão")
 
     var pessoa1: Pessoa = Pessoa(nome="Guilherme")
     var pessoa2: Pessoa = Pessoa(nome="Lucas")
     var pessoa3: Pessoa = Pessoa(nome="Maria")
 
-    var nomes: MutableList<Pessoa> = mutableListOf<Pessoa>(pessoa1, pessoa2, pessoa3)
+    var nome: String = ""
+    var nomes: MutableList<Pessoa> = mutableListOf(pessoa1, pessoa2, pessoa3)
+    var comidas: MutableList<Comida> = mutableListOf()
 
 
     object companion {
@@ -39,16 +42,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        comidas.add(comida1)
+        comidas.add(comida2)
+        comidas.add(comida3)
 
         botaoMaca.setOnClickListener({
-            comeuAlgo(comida="Maçã")
+            comeuAlgo(comida=comida1)
         })
 
         botaoBanana.setOnClickListener({
-            comeuAlgo(comida="Banana")
+            comeuAlgo(comida=comida2)
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comida="Pão")
+            comeuAlgo(comida=comida3)
         })
         botaoMudarNome.setOnClickListener({
             /*
@@ -80,18 +86,18 @@ class MainActivity : AppCompatActivity() {
     *
     * */
 
-    fun comeuAlgo(comida: String) {
+    fun comeuAlgo(comida: Comida) {
         var textoUsuario1: String = ""
         var textoUsuario2: String = ""
         var textoUsuario3: String = ""
-        if (comida == "Maçã") {
+        if (comida == comida1) {
             textoUsuario1 = "${nomes[0]} comeu"
             textoUsuario2 = "${nomes[1]} comeu"
         }
-        if (comida == "Banana") {
+        if (comida == comida2) {
             textoUsuario1 = "${nomes[0]} comeu"
         }
-        if (comida == "Pão") {
+        if (comida == comida3) {
             textoUsuario1 = "${nomes[1]} comeu"
             textoUsuario2 = "${nomes[2]} comeu"
         }
