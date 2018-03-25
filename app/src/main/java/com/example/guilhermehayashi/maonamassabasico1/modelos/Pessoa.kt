@@ -3,7 +3,7 @@ package com.example.guilhermehayashi.maonamassabasico1.modelos
 import android.os.Parcel
 import android.os.Parcelable
 
-class Pessoa(var nome: String, var comidas: MutableList<Comida> = mutableListOf()): Parcelable {
+class Pessoa(var nome: String, var favoritas: MutableList<Comida> = mutableListOf(), var comidas: MutableList<Comida> = mutableListOf()): Parcelable {
 
     companion object CREATOR: Parcelable.Creator<Pessoa> {
         override fun createFromParcel(source: Parcel?): Pessoa {
@@ -15,10 +15,11 @@ class Pessoa(var nome: String, var comidas: MutableList<Comida> = mutableListOf(
         }
     }
 
-    constructor(parcel: Parcel?): this(parcel?.readString() ?: "")
+    constructor(parcel: Parcel?): this(parcel?.readString() ?: "", parcel?.readArray(Comida::class.java.classLoader)?.toMutableList() as MutableList<Comida>)
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
         dest?.writeString(nome)
+        dest?.writeArray(favoritas.toTypedArray())
     }
 
     override fun describeContents(): Int {
@@ -30,6 +31,8 @@ class Pessoa(var nome: String, var comidas: MutableList<Comida> = mutableListOf(
     }
 
     fun comerComida(comida: Comida) {
-        this.comidas.add(comida)
+        if (favoritas.contains(comida)) {
+            this.comidas.add(comida)
+        }
     }
 }

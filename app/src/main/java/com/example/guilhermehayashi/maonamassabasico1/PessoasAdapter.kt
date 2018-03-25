@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 
 class PessoasAdapter(var pessoas: MutableList<Pessoa>, var context: Context): RecyclerView.Adapter<PessoasAdapter.PessoaViewHolder>() {
@@ -36,7 +37,7 @@ class PessoasAdapter(var pessoas: MutableList<Pessoa>, var context: Context): Re
             this.nomeEditView = view.findViewById(R.id.nomePessoaEdit)
             this.okButton = view.findViewById(R.id.pessoaOkButton)
             this.okButton?.setOnClickListener({
-                this.pessoa?.nome = nomeEditView?.text.toString()
+                this.pessoa?.favoritas?.add(Comida(nome=nomeEditView?.text.toString()))
             })
         }
 

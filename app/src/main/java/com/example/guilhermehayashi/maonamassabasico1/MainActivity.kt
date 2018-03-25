@@ -82,19 +82,9 @@ class MainActivity : AppCompatActivity() {
     * */
 
     fun comeuAlgo(comida: Comida) {
-        if (comida == comida1) {
-            nomes[0].comerComida(comida)
-            nomes[1].comerComida(comida)
-        }
-        if (comida == comida2) {
-            nomes[0].comerComida(comida)
-        }
-        if (comida == comida3) {
-            nomes[1].comerComida(comida)
-            nomes[2].comerComida(comida)
-        }
         var texto = ""
         for (pessoa in nomes) {
+            pessoa.comerComida(comida)
             texto = texto + pessoa.toString()
         }
         textoClicou.text = texto
