@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +25,11 @@ class MainActivity : AppCompatActivity() {
     var contador: Int = 0
     var nome: String = "Guilherme"
 
-    var nome1: String = "Guilherme"
-    var nome2: String = "Lucas"
-    var nome3: String = "Maria"
+    var pessoa1: Pessoa = Pessoa(nome="Guilherme")
+    var pessoa2: Pessoa = Pessoa(nome="Lucas")
+    var pessoa3: Pessoa = Pessoa(nome="Maria")
 
-    var nomes: MutableList<String> = mutableListOf<String>(nome1, nome2, nome3)
+    var nomes: MutableList<Pessoa> = mutableListOf<Pessoa>(pessoa1, pessoa2, pessoa3)
 
 
     object companion {
