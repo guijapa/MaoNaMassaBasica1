@@ -11,17 +11,26 @@ class MainActivity : AppCompatActivity() {
 
     /*
     *
-    * Qualquer variável dentro desse escopo é acessível em qualquer lugar do código. Ver Segunda Activity.
+    * MutableList<T> representa uma lista de elementos do tipo T.
     *
-    * object compaion {
-    *   var nomeDaVariavel: Tipo = valor
-    * }
+    * Dinamica:
+    *   - O primeiro usuario come a comida 1 e 2, mas não come a comida 3.
+    *   - O segundo usuário come a comida 1 e 3, mas não come a comida 2.
+    *   - O terceiro usuário come apenas a comida 3.
     *
     * */
 
     var comidas: String = ""
     var contador: Int = 0
     var nome: String = "Guilherme"
+
+    var nome1: String = "Guilherme"
+    var nome2: String = "Lucas"
+    var nome3: String = "Maria"
+
+    var nomes: MutableList<String> = mutableListOf<String>(nome1, nome2, nome3)
+
+
     object companion {
         val nameKey: String = "NOME_DO_USUARIO"
     }
@@ -63,14 +72,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+    *
+    * Escopos e variáveis em escopo que é resetado.
+    * Regra de negócio
+    *
+    * */
+
     fun comeuAlgo(comida: String) {
-        contador = contador + 1
-        comidas = comidas + comida + ","
-        if (contador > 3) {
-            comidas = "" + comida
-            contador = 0
+        var textoUsuario1: String = ""
+        var textoUsuario2: String = ""
+        var textoUsuario3: String = ""
+        if (comida == "Maçã") {
+            textoUsuario1 = "${nomes[0]} comeu"
+            textoUsuario2 = "${nomes[1]} comeu"
         }
-        textoClicou.text = "${nome} a comida:" + comidas
+        if (comida == "Banana") {
+            textoUsuario1 = "${nomes[0]} comeu"
+        }
+        if (comida == "Pão") {
+            textoUsuario1 = "${nomes[1]} comeu"
+            textoUsuario2 = "${nomes[2]} comeu"
+        }
+        textoClicou.text = "${textoUsuario1}\n ${textoUsuario2}\n ${textoUsuario3}"
     }
 
 }
