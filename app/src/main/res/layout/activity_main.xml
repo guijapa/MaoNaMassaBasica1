@@ -27,17 +27,39 @@
 
     -->
 
-    <Button
-        android:id="@+id/botaoVermelho"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:background="#fff000"
-        android:text="Click em mim"/>
+        android:layout_height="300dp"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/botaoMaca"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:background="#ff0000"
+            android:text="MAÇÃ"/>
+
+        <Button
+            android:id="@+id/botaoBanana"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:background="#ffff00"
+            android:text="Banana"/>
+
+        <Button
+            android:id="@+id/botaoPao"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:background="#ffff00"
+            android:text="Pão"/>
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textoClicou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CLICOU???"/>
+        android:text="Guilherme comeu ate agora: "/>
 
 </LinearLayout>

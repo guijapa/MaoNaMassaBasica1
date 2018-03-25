@@ -17,23 +17,45 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        botaoVermelho.setOnClickListener({
-            click()
+
+        /*
+        *   Listeners são métodos que são executados quando existe interação do usuário
+        *   com o celular como por ex: Clicar, Scroll, Click longo, ação de marcar como checked (toggle).
+        *
+        *   Exemplo: idDaViewNoXml.setOnClickListener({
+        *   })
+        *
+        *   Também existe outra definição para listeners, mas por enquanto ele é um ouvinte de eventos.
+        *
+        * */
+
+        botaoMaca.setOnClickListener({
+            comeuAlgo(comida="Maçã")
         })
+
+        botaoBanana.setOnClickListener({
+            comeuAlgo(comida="Banana")
+        })
+        botaoPao.setOnClickListener({
+            comeuAlgo(comida="Pão")
+        })
+
     }
 
     /*
+    * Tipos Primitivos:
     *
-    * Um método possui o seguinte formato
+    * String | Texto ("", "exemplo1", "qualquer texto \n com quebra de linha")
+    * Int    | Inteiro (0, 1, 2, 3, 5, -10, 9)
+    * Double | Decimal (0.1, 0.2, 0.5, -10.5. 10, 4)
     *
-    * fun nomeDoMetodo(parametros: tipo ou simplesmente vazio) {
-    *   // instruções de código que podem ser invocados a qualquer instante dentro dessa Activity
-    * }
+    * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
+    *
     *
     * */
 
-    fun click() {
-        textoClicou.text = "O botão foi clicado"
+    fun comeuAlgo(comida: String) {
+        textoClicou.text = "Comeu a comida:" + comida
     }
 
 }
