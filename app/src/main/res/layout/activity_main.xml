@@ -56,6 +56,12 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/botaoMudarNome"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Mudar seu nome?"/>
+
     <TextView
         android:id="@+id/textoClicou"
         android:layout_width="match_parent"

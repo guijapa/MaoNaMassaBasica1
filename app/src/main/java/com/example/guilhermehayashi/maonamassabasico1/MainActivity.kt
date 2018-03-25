@@ -1,5 +1,6 @@
 package com.example.guilhermehayashi.maonamassabasico1
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,37 +11,24 @@ class MainActivity : AppCompatActivity() {
 
     /*
     *
-    * Variáveis: são valores que estão guardados para uso posteriores. Por ex.
+    * Qualquer variável dentro desse escopo é acessível em qualquer lugar do código. Ver Segunda Activity.
     *
-    * A variável a terá o valor 2 enquanto não for alterada. E x terá o valor 12.
-    * a = 2
-    * x = a + 10
-    * x = 12
-    *
-    * Formato:
-    *
-    * var nomeDaVariavel: Tipo = valor
-    *
+    * object compaion {
+    *   var nomeDaVariavel: Tipo = valor
+    * }
     *
     * */
 
     var comidas: String = ""
     var contador: Int = 0
+    var nome: String = "Guilherme"
+    object companion {
+        val nameKey: String = "NOME_DO_USUARIO"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /*
-        *   Listeners são métodos que são executados quando existe interação do usuário
-        *   com o celular como por ex: Clicar, Scroll, Click longo, ação de marcar como checked (toggle).
-        *
-        *   Exemplo: idDaViewNoXml.setOnClickListener({
-        *   })
-        *
-        *   Também existe outra definição para listeners, mas por enquanto ele é um ouvinte de eventos.
-        *
-        * */
 
         botaoMaca.setOnClickListener({
             comeuAlgo(comida="Maçã")
@@ -52,25 +40,20 @@ class MainActivity : AppCompatActivity() {
         botaoPao.setOnClickListener({
             comeuAlgo(comida="Pão")
         })
+        botaoMudarNome.setOnClickListener({
+            /*
+            *
+            * É dessa forma que iniciamos uma nova Activity.
+            *
+            * */
+            var intent = Intent(this, SegundaActivity::class.java)
+            intent.putExtra(MainActivity.companion.nameKey, nome)
+            startActivity(intent)
+        })
 
     }
 
     /*
-    * Tipos Primitivos:
-    *
-    * String | Texto ("", "exemplo1", "qualquer texto \n com quebra de linha")
-    * Int    | Inteiro (0, 1, 2, 3, 5, -10, 9)
-    * Double | Decimal (0.1, 0.2, 0.5, -10.5. 10, 4)
-    *
-    * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
-    *
-    * Condicional de comparação
-    *
-    * if (expressão) {
-    *   // código
-    * } else {
-    *   // código
-    * }
     *
     * */
 
