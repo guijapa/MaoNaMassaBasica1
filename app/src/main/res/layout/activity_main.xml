@@ -50,7 +50,7 @@
             android:id="@+id/botaoPao"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:background="#ffff00"
+            android:background="#229603"
             android:text="Pão"/>
 
 
@@ -61,5 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guilherme comeu ate agora: "/>
+
+
+
 
 </LinearLayout>

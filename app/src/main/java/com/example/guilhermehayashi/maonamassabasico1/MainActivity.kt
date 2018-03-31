@@ -26,10 +26,17 @@ class MainActivity : AppCompatActivity() {
 
     var comidas: String = ""
     var contador: Int = 0
+    var pessoas: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+        pessoas.add("Paiva")//maça
+        pessoas.add("Livia")//banana
+        pessoas.add("Rodolfo")//pao
 
         /*
         *   Listeners são métodos que são executados quando existe interação do usuário
@@ -80,7 +87,19 @@ class MainActivity : AppCompatActivity() {
         if (contador > 3) {
             comidas = "" + comida
         }
-        textoClicou.text = "Comeu a comida:" + comidas
-    }
+        //var nomes = ""
+        //for (pessoa in pessoas) {
+        // nomes = nomes + pessoa + ", "
+        var comeu = ""
+        if (comida == "Maçã"){
+            comeu=pessoas.get(0)
+        } else if (comida == "Banana"){
+            comeu=pessoas.get(1)
+        } else{
+            comeu=pessoas.get(2)
+        }
 
+            textoClicou.text = "$comeu comeram a comida:" + comidas
+
+    }
 }
