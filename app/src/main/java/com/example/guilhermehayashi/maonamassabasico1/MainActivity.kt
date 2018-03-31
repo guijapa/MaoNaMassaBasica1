@@ -26,21 +26,16 @@ class MainActivity : AppCompatActivity() {
 
     var comidas: String = ""
     var contador: Int = 0
+    var pessoas: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
-        *   Listeners são métodos que são executados quando existe interação do usuário
-        *   com o celular como por ex: Clicar, Scroll, Click longo, ação de marcar como checked (toggle).
-        *
-        *   Exemplo: idDaViewNoXml.setOnClickListener({
-        *   })
-        *
-        *   Também existe outra definição para listeners, mas por enquanto ele é um ouvinte de eventos.
-        *
-        * */
+        pessoas.add("João")//maça
+        pessoas.add("Lucas")//banana
+        pessoas.add("Robinson")//pao
+        pessoas.add("")//nada
 
         botaoMaca.setOnClickListener({
             comeuAlgo(comida="Maçã")
@@ -55,24 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*
-    * Tipos Primitivos:
-    *
-    * String | Texto ("", "exemplo1", "qualquer texto \n com quebra de linha")
-    * Int    | Inteiro (0, 1, 2, 3, 5, -10, 9)
-    * Double | Decimal (0.1, 0.2, 0.5, -10.5. 10, 4)
-    *
-    * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
-    *
-    * Condicional de comparação
-    *
-    * if (expressão) {
-    *   // código
-    * } else {
-    *   // código
-    * }
-    *
-    * */
+
 
     fun comeuAlgo(comida: String) {
         contador = contador + 1
@@ -80,7 +58,22 @@ class MainActivity : AppCompatActivity() {
         if (contador > 3) {
             comidas = "" + comida
         }
-        textoClicou.text = "Comeu a comida:" + comidas
+
+        var comeu = ""
+        if (comida == "Maçã"){
+            comeu=pessoas.get(0)
+        }
+        else if(comida =="Banana"){
+            comeu=pessoas.get(1)
+        }
+        else {
+            comeu = pessoas.get(2)
+        }
+            textoClicou.text = comeu + " comeru a comida:" + comida
     }
 
 }
+
+//var nomes = ""
+//for(pessoa in pessoas) {
+//    nomes = nomes + pessoa + ","
