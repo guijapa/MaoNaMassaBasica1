@@ -3,6 +3,8 @@ package com.example.guilhermehayashi.maonamassabasico1
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,56 +26,57 @@ class MainActivity : AppCompatActivity() {
     *
     * */
 
-    var comidas: String = ""
     var contador: Int = 0
-    var pessoas: MutableList<String> = mutableListOf()
+    var pessoas: MutableList<Pessoa> = mutableListOf()
+    var comidas: MutableList<Comida> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        pessoas.add("João")//maça
-        pessoas.add("Lucas")//banana
-        pessoas.add("Robinson")//pao
-        pessoas.add("")//nada
+        pessoas.add(Pessoa(nome = "João"))
+        pessoas.add(Pessoa(nome = "Lucas"))
+        pessoas.add(Pessoa(nome = "Robinson"))
+
+        comidas.add(Comida(nome = "Maça"))
+        comidas.add(Comida(nome = "Banana"))
+        comidas.add(Comida(nome = "Pão"))
 
         botaoMaca.setOnClickListener({
-            comeuAlgo(comida="Maçã")
+            comeuAlgo(comidas.get(0))
         })
 
         botaoBanana.setOnClickListener({
-            comeuAlgo(comida="Banana")
+            comeuAlgo(comidas.get(1))
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comida="Pão")
+            comeuAlgo(comidas.get(2))
         })
 
     }
 
 
 
-    fun comeuAlgo(comida: String) {
+    fun comeuAlgo(comida: Comida) {
         contador = contador + 1
-        comidas = comidas + comida + ","
+        var comidas_list: String = ""
+        comidas_list = comidas_list + comida + ","
         if (contador > 3) {
-            comidas = "" + comida
+            comidas_list = "" + comida
         }
 
         var comeu = ""
-        if (comida == "Maçã"){
-            comeu=pessoas.get(0)
+        if (comida == comidas.get(0)){
+            comeu=pessoas.get(0).toString()
         }
-        else if(comida =="Banana"){
-            comeu=pessoas.get(1)
+        else if(comida ==comidas.get(1)){
+            comeu=pessoas.get(1).toString()
         }
         else {
-            comeu = pessoas.get(2)
+            comeu = pessoas.get(2).toString()
         }
-            textoClicou.text = comeu + " comeru a comida:" + comida
+            textoClicou.text = "$comeu comeru a comida: ${comida.nome}"
     }
 
 }
 
-//var nomes = ""
-//for(pessoa in pessoas) {
-//    nomes = nomes + pessoa + ","
