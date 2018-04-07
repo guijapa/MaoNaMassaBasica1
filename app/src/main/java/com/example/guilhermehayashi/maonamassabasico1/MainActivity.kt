@@ -5,28 +5,12 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
-
-    /*
-    *
-    * Variáveis: são valores que estão guardados para uso posteriores. Por ex.
-    *
-    * A variável a terá o valor 2 enquanto não for alterada. E x terá o valor 12.
-    * a = 2
-    * x = a + 10
-    * x = 12
-    *
-    * Formato:
-    *
-    * var nomeDaVariavel: Tipo = valor
-    *
-    *
-    * */
-
-    var comidas: String = ""
     var contador: Int = 0
-    var pessoas: MutableList<String> = mutableListOf()
+    var pessoas: MutableList<Pessoa> = mutableListOf()
+    var comidas: MutableList<Comida> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,72 +18,48 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        pessoas.add("Paiva")//maça
-        pessoas.add("Livia")//banana
-        pessoas.add("Rodolfo")//pao
+        pessoas.add(Pessoa(nome = "Guilherme"))
+        pessoas.add(Pessoa(nome = "Paiva"))
+        pessoas.add(Pessoa(nome = "Robson"))
 
-        /*
-        *   Listeners são métodos que são executados quando existe interação do usuário
-        *   com o celular como por ex: Clicar, Scroll, Click longo, ação de marcar como checked (toggle).
-        *
-        *   Exemplo: idDaViewNoXml.setOnClickListener({
-        *   })
-        *
-        *   Também existe outra definição para listeners, mas por enquanto ele é um ouvinte de eventos.
-        *
-        * */
+        comidas.add(Comida(nome = "Maçã"))
+        comidas.add(Comida(nome = "Banana"))
+        comidas.add(Comida(nome = "Pão"))
+
 
         botaoMaca.setOnClickListener({
-            comeuAlgo(comida="Maçã")
+            comeuAlgo(comidas.get(0))
         })
 
         botaoBanana.setOnClickListener({
-            comeuAlgo(comida="Banana")
+            comeuAlgo(comidas.get(1))
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comida="Pão")
+            comeuAlgo(comidas.get(2))
         })
 
     }
 
-    /*
-    * Tipos Primitivos:
-    *
-    * String | Texto ("", "exemplo1", "qualquer texto \n com quebra de linha")
-    * Int    | Inteiro (0, 1, 2, 3, 5, -10, 9)
-    * Double | Decimal (0.1, 0.2, 0.5, -10.5. 10, 4)
-    *
-    * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
-    *
-    * Condicional de comparação
-    *
-    * if (expressão) {
-    *   // código
-    * } else {
-    *   // código
-    * }
-    *
-    * */
 
-    fun comeuAlgo(comida: String) {
+
+    fun comeuAlgo(comida: Comida) {
+
         contador = contador + 1
-        comidas = comidas + comida + ","
+        var comidaString: String = ""
+        comidaString = comidaString + comida + ","
         if (contador > 3) {
-            comidas = "" + comida
+            comidaString = "" + comida
         }
-        //var nomes = ""
-        //for (pessoa in pessoas) {
-        // nomes = nomes + pessoa + ", "
         var comeu = ""
-        if (comida == "Maçã"){
-            comeu=pessoas.get(0)
-        } else if (comida == "Banana"){
-            comeu=pessoas.get(1)
+        if (comida == comidas.get(0)){
+            comeu=pessoas.get(0).toString()
+        } else if (comida == comidas.get(1)){
+            comeu=pessoas.get(1).toString()
         } else{
-            comeu=pessoas.get(2)
+            comeu=pessoas.get(2).toString()
         }
 
-            textoClicou.text = "$comeu comeram a comida:" + comidas
+            textoClicou.text = "$comeu comeu a comida: ${comida.nome}"
 
     }
 }
