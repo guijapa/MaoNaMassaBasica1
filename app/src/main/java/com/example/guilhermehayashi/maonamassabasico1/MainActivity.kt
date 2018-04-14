@@ -1,5 +1,6 @@
 package com.example.guilhermehayashi.maonamassabasico1
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
             comeuAlgo(comidas.get(1))
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comidas.get(2))
+            //comeuAlgo(comidas.get(2))
+            var intent = Intent(this, SegundaActivity::class.java)
+            startActivity(intent)
         })
 
     }
