@@ -1,5 +1,6 @@
 package com.example.guilhermehayashi.maonamassabasico1
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -50,8 +51,11 @@ class MainActivity : AppCompatActivity() {
             comeuAlgo(comidas.get(1))
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comidas.get(2))
+            //comeuAlgo(comidas.get(2))
+            var intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
         })
+
 
     }
 
@@ -75,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         else {
             comeu = pessoas.get(2).toString()
         }
-            textoClicou.text = "$comeu comeru a comida: ${comida.nome}"
+            textoClicou.text = "$comeu comeu a comida: ${comida.nome}"
     }
 
 }
