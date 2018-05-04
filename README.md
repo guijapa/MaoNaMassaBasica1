@@ -108,13 +108,13 @@ botaoPao.setOnClickListener({
     comeuAlgo(comida="Pão")
 })
 ```
-    - Texto indicando que comida foi selecionada.
-    - Trabalhamos com variáveis que armazenam valores para serem usados no futuro
+    - Texto indicando que comida foi selecionada
+    - Trabalhamos com variáveis que armazenam valores para serem usados no futuro
 ```
 var comidas: String = ""
 var contador: Int = 0
 ```
-    - Também implementamos o método comeuAlgo que possui um condicional IF ELSE que compara valores
+    - Também implementamos o método comeuAlgo que possui um condicional IF ELSE que compara valores
 ```
 fun comeuAlgo(comida: String) {
     contador = contador + 1
@@ -132,7 +132,7 @@ fun comeuAlgo(comida: String) {
 ```
     var nomes: MutableList<String> = mutableListOf<String>(nome1, nome2, nome3)
 ```
-    - Dinamica com regra de negócio.
+    - Dinamica com regra de negócio.
 ```
 fun comeuAlgo(comida: String) {
     var textoUsuario1: String = ""
