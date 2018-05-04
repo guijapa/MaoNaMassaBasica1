@@ -2,13 +2,13 @@
 
 ### Primeira Aula
 
-    - Iniciamos o projeto com hello world.
-    - Mostramos o LinearLayout: horizontal e vertical.    
-    - Explicamos que todas as views possuem tamanho e posição.
-    - Conceito de <tag></tag> dentro dos arquivos de views.
-    - Activity é onde programamos o comportamento da view. Interação do usuário com o celular.
-    - Views precisam de ids para serem referenciadas na Activity.
-    - Fizemos o botão ser apertado e mudar o texto.
+- Iniciamos o projeto com hello world.
+- Mostramos o LinearLayout: horizontal e vertical.
+- Explicamos que todas as views possuem tamanho e posição.
+- Conceito de <tag></tag> dentro dos arquivos de views.
+- Activity é onde programamos o comportamento da view. Interação do usuário com o celular.
+- Views precisam de ids para serem referenciadas na Activity.
+- Fizemos o botão ser apertado e mudar o texto.
     
 ``` MainActivity.kt
 class MainActivity : AppCompatActivity() {
@@ -91,11 +91,11 @@ class MainActivity : AppCompatActivity() {
 ```
 ### Segunda Aula
 
-    - Foi criado um Layout com 3 botões na horizontal em um layout vertical.
-    - Estrutura de layouts mais complexos com templates.
-    - Dinamica das frutas e pessoas.
-    - Botão que indica qual a fruta que foi comida.
-    - Adicionamos listeners para os botões para "ouvirmos" evento de click no botão
+- Foi criado um Layout com 3 botões na horizontal em um layout vertical.
+- Estrutura de layouts mais complexos com templates.
+- Dinamica das frutas e pessoas.
+- Botão que indica qual a fruta que foi comida.
+- Adicionamos listeners para os botões para "ouvirmos" evento de click no botão
 ```
 botaoMaca.setOnClickListener({
     comeuAlgo(comida="Maçã")
@@ -108,13 +108,13 @@ botaoPao.setOnClickListener({
     comeuAlgo(comida="Pão")
 })
 ```
-    - Texto indicando que comida foi selecionada
-    - Trabalhamos com variáveis que armazenam valores para serem usados no futuro
+- Texto indicando que comida foi selecionada
+- Trabalhamos com variáveis que armazenam valores para serem usados no futuro
 ```
 var comidas: String = ""
 var contador: Int = 0
 ```
-    - Também implementamos o método comeuAlgo que possui um condicional IF ELSE que compara valores
+- Também implementamos o método comeuAlgo que possui um condicional IF ELSE que compara valores
 ```
 fun comeuAlgo(comida: String) {
     contador = contador + 1
@@ -128,11 +128,11 @@ fun comeuAlgo(comida: String) {
     
 ### Terceira Aula
 
-    - Conceito de arrays e lista mutavel.
+- Conceito de arrays e lista mutavel.
 ```
     var nomes: MutableList<String> = mutableListOf<String>(nome1, nome2, nome3)
 ```
-    - Dinamica com regra de negócio.
+- Dinamica com regra de negócio.
 ```
 fun comeuAlgo(comida: String) {
     var textoUsuario1: String = ""
