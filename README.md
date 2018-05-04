@@ -5,7 +5,7 @@
 - Iniciamos o projeto com hello world.
 - Mostramos o LinearLayout: horizontal e vertical.
 - Explicamos que todas as views possuem tamanho e posição.
-- Conceito de <tag></tag> dentro dos arquivos de views.
+- Conceito de `<tag></tag>` dentro dos arquivos de views.
 - Activity é onde programamos o comportamento da view. Interação do usuário com o celular.
 - Views precisam de ids para serem referenciadas na Activity.
 - Fizemos o botão ser apertado e mudar o texto.
