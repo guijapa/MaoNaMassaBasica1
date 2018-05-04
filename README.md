@@ -155,5 +155,20 @@ fun comeuAlgo(comida: String) {
 
 ### Quarta Aula
 
+- Conceito de Classes e Objetos.
+- Classes são como arquiteturas (plantas) de casas e objetos são as casas. Ou seja, a classe diz a estrutura em comum dos objetos.
+```
+class Casa(var cor: String) {
+}
+```
+- Objetos são variáveis que se comportam de acordo com a estrutura da classe.
+```
+var casaRosa = Casa("rosa")
+var casaRoxa = Casa("roxa")
+var casaAzul = Casa("azul")
+```
+
 ### Quinta Aula
-    
+
+- Segunda Activity e fluxo de navegação
+- Implementamos uma lista com o componente RecyclerView. Que por sua vez, precisa de um RecyclerView.Adapter e um RecyclerView.ViewHolder.
