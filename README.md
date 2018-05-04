@@ -95,9 +95,63 @@ class MainActivity : AppCompatActivity() {
     - Estrutura de layouts mais complexos com templates.
     - Dinamica das frutas e pessoas.
     - Botão que indica qual a fruta que foi comida.
-    - Texto indicando que comida foi selecionada.
-    
+    - Adicionamos listeners para os botões para "ouvirmos" evento de click no botão
+    ```
+        botaoMaca.setOnClickListener({
+            comeuAlgo(comida="Maçã")
+        })
+
+        botaoBanana.setOnClickListener({
+            comeuAlgo(comida="Banana")
+        })
+        botaoPao.setOnClickListener({
+            comeuAlgo(comida="Pão")
+        })
+    ```
+    - Texto indicando que comida foi selecionada.
+    - Trabalhamos com variáveis que armazenam valores para serem usados no futuro
+    ```
+    var comidas: String = ""
+    var contador: Int = 0
+    ```
+    - Também implementamos o método comeuAlgo que possui um condicional IF ELSE que compara valores
+    ```
+    fun comeuAlgo(comida: String) {
+        contador = contador + 1
+        comidas = comidas + comida + ","
+        if (contador > 3) {
+            comidas = "" + comida
+        }
+        textoClicou.text = "Comeu a comida:" + comidas
+    }
+    ```
+    
 ### Terceira Aula
+
+    - Conceito de arrays e lista mutavel.
+    ```
+        var nomes: MutableList<String> = mutableListOf<String>(nome1, nome2, nome3)
+    ```
+    - Dinamica com regra de negócio.
+    ```
+    fun comeuAlgo(comida: String) {
+        var textoUsuario1: String = ""
+        var textoUsuario2: String = ""
+        var textoUsuario3: String = ""
+        if (comida == "Maçã") {
+            textoUsuario1 = "${nomes[0]} comeu"
+            textoUsuario2 = "${nomes[1]} comeu"
+        }
+        if (comida == "Banana") {
+            textoUsuario1 = "${nomes[0]} comeu"
+        }
+        if (comida == "Pão") {
+            textoUsuario1 = "${nomes[1]} comeu"
+            textoUsuario2 = "${nomes[2]} comeu"
+        }
+        textoClicou.text = "${textoUsuario1}\n ${textoUsuario2}\n ${textoUsuario3}"
+    }
+    ```
 
 ### Quarta Aula
 
