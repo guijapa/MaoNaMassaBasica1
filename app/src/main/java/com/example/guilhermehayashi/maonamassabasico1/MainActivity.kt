@@ -1,8 +1,11 @@
 package com.example.guilhermehayashi.maonamassabasico1
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
+import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -10,77 +13,81 @@ class MainActivity : AppCompatActivity() {
 
     /*
     *
-    * Variáveis: são valores que estão guardados para uso posteriores. Por ex.
+    * MutableList<T> representa uma lista de elementos do tipo T.
     *
-    * A variável a terá o valor 2 enquanto não for alterada. E x terá o valor 12.
-    * a = 2
-    * x = a + 10
-    * x = 12
-    *
-    * Formato:
-    *
-    * var nomeDaVariavel: Tipo = valor
-    *
+    * Dinamica:
+    *   - O primeiro usuario come a comida 1 e 2, mas não come a comida 3.
+    *   - O segundo usuário come a comida 1 e 3, mas não come a comida 2.
+    *   - O terceiro usuário come apenas a comida 3.
     *
     * */
 
-    var comidas: String = ""
-    var contador: Int = 0
+    var comida1: Comida = Comida(nome="Maçã")
+    var comida2: Comida = Comida(nome="Banana")
+    var comida3: Comida = Comida(nome="Pão")
+
+    var pessoa1: Pessoa = Pessoa(nome="Guilherme")
+    var pessoa2: Pessoa = Pessoa(nome="Lucas")
+    var pessoa3: Pessoa = Pessoa(nome="Maria")
+
+    var nome: String = ""
+    var nomes: MutableList<Pessoa> = mutableListOf(pessoa1, pessoa2, pessoa3)
+    var comidas: MutableList<Comida> = mutableListOf()
+
+
+    object companion {
+        val nameKey: String = "NOME_DO_USUARIO"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /*
-        *   Listeners são métodos que são executados quando existe interação do usuário
-        *   com o celular como por ex: Clicar, Scroll, Click longo, ação de marcar como checked (toggle).
-        *
-        *   Exemplo: idDaViewNoXml.setOnClickListener({
-        *   })
-        *
-        *   Também existe outra definição para listeners, mas por enquanto ele é um ouvinte de eventos.
-        *
-        * */
+        comidas.add(comida1)
+        comidas.add(comida2)
+        comidas.add(comida3)
 
         botaoMaca.setOnClickListener({
-            comeuAlgo(comida="Maçã")
+            comeuAlgo(comida=comida1)
         })
 
         botaoBanana.setOnClickListener({
-            comeuAlgo(comida="Banana")
+            comeuAlgo(comida=comida2)
         })
         botaoPao.setOnClickListener({
-            comeuAlgo(comida="Pão")
+            comeuAlgo(comida=comida3)
+        })
+        botaoMudarNome.setOnClickListener({
+            var intent = Intent(this, SegundaActivity::class.java)
+            intent.putParcelableArrayListExtra(MainActivity.companion.nameKey, nomes as ArrayList<Pessoa>)
+            startActivityForResult(intent, 100)
         })
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100) {
+            data?.let {
+                nomes = it.getParcelableArrayListExtra(MainActivity.companion.nameKey)
+                textoClicou.text = "${nome} a comida:" + comidas
+            }
+        }
+    }
+
     /*
-    * Tipos Primitivos:
     *
-    * String | Texto ("", "exemplo1", "qualquer texto \n com quebra de linha")
-    * Int    | Inteiro (0, 1, 2, 3, 5, -10, 9)
-    * Double | Decimal (0.1, 0.2, 0.5, -10.5. 10, 4)
-    *
-    * Método comeuAlgo é invocado passando uma String para ser usado no bloco de código do método.
-    *
-    * Condicional de comparação
-    *
-    * if (expressão) {
-    *   // código
-    * } else {
-    *   // código
-    * }
+    * Escopos e variáveis em escopo que é resetado.
+    * Regra de negócio
     *
     * */
 
-    fun comeuAlgo(comida: String) {
-        contador = contador + 1
-        comidas = comidas + comida + ","
-        if (contador > 3) {
-            comidas = "" + comida
+    fun comeuAlgo(comida: Comida) {
+        var texto = ""
+        for (pessoa in nomes) {
+            pessoa.comerComida(comida)
+            texto = texto + pessoa.toString()
         }
-        textoClicou.text = "Comeu a comida:" + comidas
+        textoClicou.text = texto
     }
 
 }

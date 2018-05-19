@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/nomePessoaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome"/>
+
+    <EditText
+        android:id="@+id/nomePessoaEdit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Qual o seu nome?"/>
+
+    <Button
+        android:id="@+id/pessoaOkButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="OK"/>
+
+
+
+</LinearLayout>
