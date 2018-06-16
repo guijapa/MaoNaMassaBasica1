@@ -27,7 +27,7 @@ object RetrofitHelper {
     private fun rebuildRetrofit() {
         val client = buildClient()
         retrofit = Retrofit.Builder()
-                .baseUrl("http://pokeapi.co/api/v2/")
+                .baseUrl("http://mnm-miaudote.herokuapp.com/api/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(buildGson()))
                 .client(client)

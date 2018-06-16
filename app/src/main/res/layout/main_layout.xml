@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:listitem="@layout/pokemon_view_holder">
+        tools:listitem="@layout/pet_view_holder">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
