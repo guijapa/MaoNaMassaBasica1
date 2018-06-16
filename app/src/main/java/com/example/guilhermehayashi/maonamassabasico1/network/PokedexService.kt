@@ -8,16 +8,22 @@ import retrofit2.http.Path
 import rx.Observable
 
 public interface PokedexService {
+    @GET("pokemon/?limit=150")
+    fun getPokemons(): Observable<PokemonsResponse>
+
     @GET("pokemon/{id}/")
-    fun getPokemon(@Path("id") id: Int): Observable<PokemonResponse>
+    fun getPokemon(@Path("id") id: Int): Observable<Pokemon>
 }
 
-open class PokemonRequest(
-    @SerializedName("id")
-    @Expose var id: String
+open class PokemonsResponse(
+        @SerializedName("count")
+        @Expose var count: Int,
+
+        @SerializedName("results")
+        @Expose var results: List<Pokemon>
 )
 
-open class PokemonResponse(
+open class Pokemon(
         @SerializedName("name")
         @Expose var name: String
 )
