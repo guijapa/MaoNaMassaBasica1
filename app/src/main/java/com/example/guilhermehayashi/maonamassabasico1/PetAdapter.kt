@@ -1,17 +1,20 @@
 package com.example.guilhermehayashi.maonamassabasico1
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.guilhermehayashi.maonamassabasico1.network.Pet
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 class PetAdapter(var pets: MutableList<Pet>, var context: Context): RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
-        return PetViewHolder(LayoutInflater.from(context).inflate(R.layout.pet_view_holder, parent, false))
+        return PetViewHolder(LayoutInflater.from(context).inflate(R.layout.pet_view_holder, parent, false), context)
     }
 
     override fun getItemCount(): Int {
@@ -22,16 +25,26 @@ class PetAdapter(var pets: MutableList<Pet>, var context: Context): RecyclerView
         holder.configurar(pets[position])
     }
 
-    class PetViewHolder(var view: View): RecyclerView.ViewHolder(view) {
+    class PetViewHolder(var view: View, var context: Context): RecyclerView.ViewHolder(view) {
 
         var nomeTextView: TextView? = null
+        var pet: Pet? = null
 
         init {
             nomeTextView = view.findViewById(R.id.nomeTextView)
+            view.setOnClickListener {
+                var intent = Intent(context, DetalheActivity::class.java)
+                intent.putExtra("PET_ID", pet!!.id)
+                intent.putExtra("PET", Gson().toJson(pet))
+                context.startActivity(intent)
+
+            }
         }
 
         fun configurar(pet: Pet) {
+            this.pet = pet
             nomeTextView?.text = pet.nome
+
         }
 
     }

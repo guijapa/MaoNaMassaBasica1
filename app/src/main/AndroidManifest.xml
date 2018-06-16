@@ -27,7 +27,11 @@
         <activity
             android:name=".NovoPetActivity"
             android:label="@string/title_activity_segunda"
-            android:theme="@style/AppTheme.NoActionBar"></activity>x
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".DetalheActivity"
+            android:label="@string/title_activity_segunda"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

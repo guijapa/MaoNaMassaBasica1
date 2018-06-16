@@ -2,9 +2,7 @@ package com.example.guilhermehayashi.maonamassabasico1.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import rx.Observable
 
 public interface ApiService {
@@ -14,6 +12,9 @@ public interface ApiService {
 
     @POST("api/pets/")
     fun savePets(@Body request: PetSaveRequest): Observable<Pet>
+
+    @PATCH("api/pets/{id}/")
+    fun updatePet(@Path("id") id: String, @Body request: PetSaveRequest): Observable<Pet>
 
     @POST("auth/api/v1/login")
     fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
@@ -81,7 +82,7 @@ open class PetSaveRequest(
         @Expose var nome: String,
 
         @SerializedName("tipo")
-        @Expose var tipo: String,
+        @Expose var tipo: String? = null,
 
         @SerializedName("descricao")
         @Expose var descricao: String
