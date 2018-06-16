@@ -3,10 +3,16 @@ package com.example.guilhermehayashi.maonamassabasico1
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
+import com.example.guilhermehayashi.maonamassabasico1.network.PokedexService
+import com.example.guilhermehayashi.maonamassabasico1.network.PokemonRequest
+import com.example.guilhermehayashi.maonamassabasico1.network.RetrofitHelper
 import kotlinx.android.synthetic.main.activity_main.*
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,26 +47,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        comidas.add(comida1)
-        comidas.add(comida2)
-        comidas.add(comida3)
-
-        botaoMaca.setOnClickListener({
-            comeuAlgo(comida=comida1)
-        })
-
-        botaoBanana.setOnClickListener({
-            comeuAlgo(comida=comida2)
-        })
-        botaoPao.setOnClickListener({
-            comeuAlgo(comida=comida3)
-        })
-        botaoMudarNome.setOnClickListener({
-            var intent = Intent(this, SegundaActivity::class.java)
-            intent.putParcelableArrayListExtra(MainActivity.companion.nameKey, nomes as ArrayList<Pessoa>)
-            startActivityForResult(intent, 100)
-        })
+        setContentView(R.layout.main_layout)
+        var retrofit = RetrofitHelper.getRetrofit(false)
+        retrofit?.create(PokedexService::class.java)
+                ?.getPokemon(1)
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({
+                    Log.d("Pokemon","Pokemon: ${it.name}")
+                }, {
+                    Log.d("TAG", "Erro: ${it}")
+                })
 
     }
 
