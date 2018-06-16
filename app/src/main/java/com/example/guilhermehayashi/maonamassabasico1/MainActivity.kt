@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Comida
 import com.example.guilhermehayashi.maonamassabasico1.modelos.Pessoa
+import com.example.guilhermehayashi.maonamassabasico1.network.ApiService
 import com.example.guilhermehayashi.maonamassabasico1.network.PokedexService
 import com.example.guilhermehayashi.maonamassabasico1.network.Pokemon
 import com.example.guilhermehayashi.maonamassabasico1.network.RetrofitHelper
@@ -19,22 +20,23 @@ class MainActivity : AppCompatActivity() {
 
     object companion {
         val nameKey: String = "NOME_DO_USUARIO"
+        var userToken: String = "";
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
         var retrofit = RetrofitHelper.getRetrofit(false)
-        retrofit?.create(PokedexService::class.java)
-                ?.getPokemons()
+        retrofit?.create(ApiService::class.java)
+                ?.getPets()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe({
                     it?.results?.forEach({
-                        Log.d("Pokemon","Pokemon: ${it.name}")
+                        Log.d("PET","PET: ${it.nome}")
                     })
                     it?.let {
-                        pokemonList.adapter = PokedexAdapter(it.results.toMutableList(), this)
+                        pokemonList.adapter = PetAdapter(it.results.toMutableList(), this)
                     }
 
                 }, {

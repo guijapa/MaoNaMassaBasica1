@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.guilhermehayashi.maonamassabasico1.network.Pet
 import com.example.guilhermehayashi.maonamassabasico1.network.Pokemon
 
-class PokedexAdapter(var pokemons: MutableList<Pokemon>, var context: Context): RecyclerView.Adapter<PokedexAdapter.PokemonViewHolder>() {
+class PokedexAdapter(var pokemons: MutableList<Pet>, var context: Context): RecyclerView.Adapter<PokedexAdapter.PokemonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         return PokemonViewHolder(LayoutInflater.from(context).inflate(R.layout.pokemon_view_holder, parent, false))
@@ -29,8 +30,8 @@ class PokedexAdapter(var pokemons: MutableList<Pokemon>, var context: Context): 
             this.nameText = view.findViewById(R.id.pokemon_name_text)
         }
 
-        fun bind(pokemon: Pokemon) {
-            this.nameText?.text = pokemon.name
+        fun bind(pokemon: Pet) {
+            this.nameText?.text = pokemon.nome
         }
 
 
