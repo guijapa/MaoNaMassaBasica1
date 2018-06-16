@@ -3,10 +3,7 @@ package com.example.guilhermehayashi.maonamassabasico1
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.guilhermehayashi.maonamassabasico1.network.ApiService
-import com.example.guilhermehayashi.maonamassabasico1.network.LoginRequest
-import com.example.guilhermehayashi.maonamassabasico1.network.Pet
-import com.example.guilhermehayashi.maonamassabasico1.network.RetrofitHelper
+import com.example.guilhermehayashi.maonamassabasico1.network.*
 import kotlinx.android.synthetic.main.login_activity.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -15,6 +12,7 @@ class LoginActivity: AppCompatActivity() {
 
     object companion {
         var userToken: String = ""
+        var user: User? = null
     }
 
 
@@ -32,6 +30,7 @@ class LoginActivity: AppCompatActivity() {
                     ?.subscribe({
                 it?.let {
                     LoginActivity.companion.userToken = it.token
+                    LoginActivity.companion.user = it.user
                     var intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

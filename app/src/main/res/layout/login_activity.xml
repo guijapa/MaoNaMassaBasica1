@@ -19,7 +19,9 @@
             android:id="@+id/senhaEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Entre sua senha"/>
+            android:hint="Entre sua senha"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"/>
 
         <Button
             android:id="@+id/loginButton"

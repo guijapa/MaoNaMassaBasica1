@@ -24,6 +24,10 @@
             android:name=".SegundaActivity"
             android:label="@string/title_activity_segunda"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NovoPetActivity"
+            android:label="@string/title_activity_segunda"
+            android:theme="@style/AppTheme.NoActionBar"></activity>x
     </application>
 
 </manifest>

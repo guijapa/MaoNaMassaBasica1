@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <EditText
+            android:id="@+id/nomePetEditText"
+            android:layout_width="match_parent"
+            android:hint="Nome do Pet"
+            android:layout_height="55dp" />
+
+        <Spinner
+            android:id="@+id/tipoSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="55dp" />
+
+        <EditText
+            android:id="@+id/localizacaoEditText"
+            android:layout_width="match_parent"
+            android:hint="Localização"
+            android:layout_height="55dp" />
+
+        <EditText
+            android:id="@+id/descricaoEditText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:maxLines="10"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/criarButton"
+        android:text="Save"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+
+</RelativeLayout>

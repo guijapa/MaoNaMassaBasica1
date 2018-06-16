@@ -25,6 +25,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
+
+
+        novoPetButton.setOnClickListener {
+            val intent = Intent(this, NovoPetActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         var retrofit = RetrofitHelper.getRetrofit(false)
         retrofit?.create(ApiService::class.java)
                 ?.getPets()
@@ -41,11 +52,6 @@ class MainActivity : AppCompatActivity() {
                 }, {
                     Log.d("TAG", "Erro: ${it}")
                 })
-
-        novoPetButton.setOnClickListener {
-            
-        }
-
     }
 
 }

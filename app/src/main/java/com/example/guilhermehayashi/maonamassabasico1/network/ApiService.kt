@@ -12,8 +12,8 @@ public interface ApiService {
     @GET("api/pets")
     fun getPets(): Observable<ApiPetsResponse>
 
-    @POST("api/pets")
-    fun savePets(@Body request: Pet)
+    @POST("api/pets/")
+    fun savePets(@Body request: PetSaveRequest): Observable<Pet>
 
     @POST("auth/api/v1/login")
     fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
@@ -32,7 +32,7 @@ open class LoginResponse(
         @SerializedName("token")
         @Expose var token: String,
 
-        @SerializedName("password")
+        @SerializedName("user")
         @Expose var user: User
 )
 
@@ -56,16 +56,33 @@ open class ApiPetsResponse(
 )
 
 open class Pet(
+        @SerializedName("dono")
+        @Expose var dono: User,
+
         @SerializedName("nome")
         @Expose var nome: String,
 
         @SerializedName("tipo")
-        @Expose var tipoe: String,
+        @Expose var tipo: String,
 
         @SerializedName("descricao")
         @Expose var descricao: String,
 
         @SerializedName("id")
         @Expose var id: Int
+)
 
+open class PetSaveRequest(
+
+        @SerializedName("dono")
+        @Expose var dono: String,
+
+        @SerializedName("nome")
+        @Expose var nome: String,
+
+        @SerializedName("tipo")
+        @Expose var tipo: String,
+
+        @SerializedName("descricao")
+        @Expose var descricao: String
 )
