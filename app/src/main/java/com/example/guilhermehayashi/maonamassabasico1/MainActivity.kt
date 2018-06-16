@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     object companion {
         val nameKey: String = "NOME_DO_USUARIO"
-        var userToken: String = "";
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +41,10 @@ class MainActivity : AppCompatActivity() {
                 }, {
                     Log.d("TAG", "Erro: ${it}")
                 })
+
+        novoPetButton.setOnClickListener {
+            
+        }
 
     }
 

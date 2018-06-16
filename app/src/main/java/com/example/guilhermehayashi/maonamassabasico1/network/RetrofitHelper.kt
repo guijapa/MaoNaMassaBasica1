@@ -2,6 +2,7 @@ package com.example.guilhermehayashi.maonamassabasico1.network
 
 import android.util.Log
 import com.example.guilhermehayashi.maonamassabasico1.BuildConfig
+import com.example.guilhermehayashi.maonamassabasico1.LoginActivity
 import com.example.guilhermehayashi.maonamassabasico1.MainActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -28,7 +29,7 @@ object RetrofitHelper {
     private fun rebuildRetrofit() {
         val client = buildClient()
         retrofit = Retrofit.Builder()
-                .baseUrl("https://mnm-miaudote.herokuapp.com/api/")
+                .baseUrl("https://mnm-miaudote.herokuapp.com/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(buildGson()))
                 .client(client)
@@ -55,7 +56,7 @@ object RetrofitHelper {
     private fun addTokenInterceptor(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         val tokenInterceptor = Interceptor { chain ->
             var newRequest = chain.request()
-            val accessToken = MainActivity.companion.userToken
+            val accessToken = LoginActivity.companion.userToken
             newRequest = newRequest.newBuilder().addHeader("Authorization", "Token $accessToken").build()
             chain.proceed(newRequest)
         }
