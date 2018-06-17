@@ -29,7 +29,7 @@ object RetrofitHelper {
     private fun rebuildRetrofit() {
         val client = buildClient()
         retrofit = Retrofit.Builder()
-                .baseUrl("https://mnm-miaudote.herokuapp.com/")
+                .baseUrl(Api.url)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(buildGson()))
                 .client(client)
@@ -56,7 +56,7 @@ object RetrofitHelper {
     private fun addTokenInterceptor(builder: OkHttpClient.Builder): OkHttpClient.Builder {
         val tokenInterceptor = Interceptor { chain ->
             var newRequest = chain.request()
-            val accessToken = LoginActivity.companion.userToken
+            val accessToken = Api.userToken
             newRequest = newRequest.newBuilder().addHeader("Authorization", "Token $accessToken").build()
             chain.proceed(newRequest)
         }

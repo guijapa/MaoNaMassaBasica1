@@ -21,6 +21,7 @@
             android:layout_height="50dp"
             android:hint="Entre sua senha"
             android:inputType="textPassword"
+            android:singleLine="true"
             android:imeOptions="actionDone"/>
 
         <Button

@@ -5,16 +5,19 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.http.*
 import rx.Observable
 
-public interface ApiService {
+interface ApiService {
 
-    @GET("api/pets")
-    fun getPets(): Observable<ApiPetsResponse>
+    @GET("api/${Api.path}/")
+    fun list(): Observable<ApiListResponse>
 
-    @POST("api/pets/")
-    fun savePets(@Body request: PetSaveRequest): Observable<Pet>
+    @GET("api/${Api.path}/{id}/")
+    fun get(@Path("id") id: String): Observable<ApiDetailResponse>
 
-    @PATCH("api/pets/{id}/")
-    fun updatePet(@Path("id") id: String, @Body request: PetSaveRequest): Observable<Pet>
+    @POST("api/${Api.path}/")
+    fun save(@Body request: ApiSaveRequest): Observable<ApiDetailResponse>
+
+    @PATCH("api/${Api.path}/{id}/")
+    fun update(@Path("id") id: String, @Body request: ApiSaveRequest): Observable<ApiDetailResponse>
 
     @POST("auth/api/v1/login")
     fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
@@ -48,15 +51,32 @@ open class User(
         @Expose var email: String
 )
 
-open class ApiPetsResponse(
+open class ApiListResponse(
         @SerializedName("count")
         @Expose var count: Int,
 
         @SerializedName("results")
-        @Expose var results: List<Pet>
+        @Expose var results: List<ApiDetailResponse>
 )
 
-open class Pet(
+open class ApiSaveRequest(
+
+        @SerializedName("dono")
+        @Expose var dono: String,
+
+        @SerializedName("nome")
+        @Expose var nome: String,
+
+        @SerializedName("tipo")
+        @Expose var tipo: String? = null,
+
+        @SerializedName("descricao")
+        @Expose var descricao: String
+
+)
+
+open class ApiDetailResponse(
+
         @SerializedName("dono")
         @Expose var dono: User,
 
@@ -71,19 +91,5 @@ open class Pet(
 
         @SerializedName("id")
         @Expose var id: Int
-)
 
-open class PetSaveRequest(
-
-        @SerializedName("dono")
-        @Expose var dono: String,
-
-        @SerializedName("nome")
-        @Expose var nome: String,
-
-        @SerializedName("tipo")
-        @Expose var tipo: String? = null,
-
-        @SerializedName("descricao")
-        @Expose var descricao: String
 )
